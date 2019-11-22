@@ -9,6 +9,7 @@ import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import SchoolIcon from "@material-ui/icons/School";
+import Link from "next/link";
 
 export const mainListItems = (
   <div>
@@ -18,12 +19,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Home" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <EventAvailableIcon />
-      </ListItemIcon>
-      <ListItemText primary="Community Calender" />
-    </ListItem>
+    <Link href="/eventpage">
+      <ListItem button>
+        <ListItemIcon>
+          <EventAvailableIcon />
+        </ListItemIcon>
+        <ListItemText primary="Community Calender" />
+      </ListItem>
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
