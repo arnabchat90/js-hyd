@@ -25,6 +25,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p process.env.PORT"
+    "start": "next start -p 8080",
+    "start-default-port" : "next start"
   }
 }
