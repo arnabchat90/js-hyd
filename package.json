@@ -8,8 +8,10 @@
     "@material-ui/styles": "latest",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
+    "body-parser": "^1.19.0",
     "cldr-data": "^36.0.0",
     "clsx": "^1.0.4",
+    "express": "^4.17.1",
     "globalize": "^1.4.2",
     "iana-tz-data": "^2019.1.0",
     "moment": "^2.24.0",
@@ -25,7 +27,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p 8080",
-    "start-default-port" : "next start"
+    "start": "NODE_ENV=production node ./server/server.js",
+    "start-default-port": "next start"
   }
 }
