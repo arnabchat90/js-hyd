@@ -18,7 +18,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import LockOpenRoundedIcon from "@material-ui/icons/LockOpenRounded";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems, secondaryListItems } from "../src/dashboard/listItems";
+import { mainListItems, secondaryListItems } from "../src/dashboard/listitems";
 import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
