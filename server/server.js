@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 const api = require('./api');
 
 const dev = process.env.NODE_ENV !== "production";
+console.log(dev)
 const app = next({
   dev,
   dir: "./"
