@@ -122,7 +122,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
+export default function Dashboard({ isLoggedin, authToken }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -168,13 +168,17 @@ export default function Dashboard() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <Link href="/login">
-            <IconButton color="inherit">
-              <Badge color="tertiary">
-                <LockOpenRoundedIcon />
-              </Badge>
-            </IconButton>
-          </Link>
+          {isLoggedin ? (
+            <>{authToken}</>
+          ) : (
+            <Link href="/slacklogin">
+              <IconButton color="inherit">
+                <Badge color="tertiary">
+                  <LockOpenRoundedIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer

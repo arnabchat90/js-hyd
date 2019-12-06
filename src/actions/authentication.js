@@ -1,0 +1,35 @@
+import { fetchLogin } from "../services/fetchLogin";
+
+export const LOGIN = "LOGIN";
+
+export function doLogin() {
+  return async function doLoginThunk(dispatch) {
+    try {
+      const res = await fetchLogin();
+      dispatch(loginSuccess(res.data));
+    } catch (error) {
+      //TODO Handle error later
+      dispatch(loginFailure(error));
+    }
+  };
+}
+
+export function loginSuccess(details) {
+  console.log("details");
+  console.log(details);
+  return {
+    type: LOGIN,
+    isLoggedin: details.isLoggedin,
+    authToken: details.authToken
+  };
+}
+
+export const LOGIN_ERROR = "LOGIN_ERROR";
+
+export function loginFailure(error) {
+  return {
+    type: LOGIN_ERROR,
+    isLoggedin: false,
+    authToken: "error"
+  };
+}
