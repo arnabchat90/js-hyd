@@ -26,7 +26,7 @@ const setAuthRouter = function (router) {
       res.status(200)
       res.json({ isLoggedIn: true, user })
     } else {
-      res.sendStatus(401)
+      res.redirect('/api/slack/callback')
     }
   })
   return router
