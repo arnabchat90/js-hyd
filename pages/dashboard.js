@@ -163,21 +163,12 @@ export default function Dashboard({ isLoggedin, authToken }) {
           >
             JS Hyderabad
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
           {isLoggedin ? (
             <>{authToken}</>
           ) : (
-            <Link href="/slacklogin">
-              <IconButton color="inherit">
-                <Badge color="tertiary">
-                  <LockOpenRoundedIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+            <a href="/slacklogin">
+              <img src="https://api.slack.com/img/sign_in_with_slack.png" />
+            </a>
           )}
         </Toolbar>
       </AppBar>
