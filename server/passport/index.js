@@ -14,7 +14,7 @@ const setAuthRouter = function (router) {
     passport.authenticate('slack', { failureRedirect: '/login' }),
     (req, res) => {
       const { user } = req
-     res.redirect('/api/slack/isLoggedIn')
+     res.redirect('/')
     }
   )
   router.get('/api/slack/isLoggedIn', function (req, res) {
