@@ -1,19 +1,11 @@
-const bodyParser = require("body-parser");
-const express = require("express");
+const routes = function(app) {
+  const express = require("express");
+  app.get("/api/route1/test", function(req, res) {
+    res.status(200);
+    const router = express.Router();
+    res.json({ message: "I am ok" });
+  });
+  router.use(bodyParser.json());
+};
 
-const router = express.Router();
-
-router.use(bodyParser.json());
-
-// oAUTH API CONTROLLERS HERE ( ONLY PUBLIC)
-router.get("/api/test", function(req, res) {
-  res.status(200);
-  res.json({ message: "I am ok" });
-});
-
-router.get("/api/login", function(req, res) {
-  res.status(401);
-  res.json({ isLoggedin: false, authToken: "d" });
-});
-
-module.exports = router;
+module.exports = routes;
