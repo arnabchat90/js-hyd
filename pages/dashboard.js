@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,6 +23,7 @@ import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
 import "../scss/main.scss";
+import { doLogin } from "../src/actions/authentication";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -81,6 +82,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     fontWeight: 1000
   },
+  avatarImg: {
+    padding: "5px",
+    borderRadius: "20px"
+  },
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
@@ -122,7 +127,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+  const { isLoggedIn, user } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -131,6 +137,15 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // useEffect(() => {
+  //   async function fetchLogin() {
+  //     // You can await here
+  //     const response = await doLogin();
+  //     console.log(response);
+  //   }
+  //   fetchLogin();
+  // }, []); // Or [] if effect doesn't need props or state
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -163,18 +178,19 @@ export default function Dashboard() {
           >
             JS Hyderabad
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <Link href="/login">
-            <IconButton color="inherit">
-              <Badge color="tertiary">
-                <LockOpenRoundedIcon />
-              </Badge>
-            </IconButton>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <img
+                className={classes.avatarImg}
+                src={user.profile.user.image_24}
+              ></img>
+              {user.profile.displayName}
+            </>
+          ) : (
+            <a href="/slacklogin">
+              <img src="https://api.slack.com/img/sign_in_with_slack.png" />
+            </a>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -223,3 +239,6 @@ export default function Dashboard() {
     </div>
   );
 }
+Dashboard.getInitialProps = async ctx => {
+  console.log(ctx.store.getState().authentication.user.displayName);
+};
