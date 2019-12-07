@@ -5,6 +5,9 @@ export const defaultState = {
   },
   get authToken() {
     return "";
+  },
+  get user() {
+    return {};
   }
 };
 
@@ -13,14 +16,15 @@ export function authentication(state = defaultState, action) {
     case LOGIN:
       return {
         ...state,
-        isLoggedin: action.isLoggedin,
-        authToken: action.authToken
+        isLoggedIn: action.isLoggedIn,
+        authToken: action.authToken,
+        user: action.user
       };
     case LOGIN_ERROR:
       return {
         ...state,
-        isLoggedin: action.isLoggedin,
-        authToken: action.authToken
+        isLoggedIn: action.isLoggedIn,
+        error: action.error
       };
     default:
       return state;

@@ -6,10 +6,11 @@ export const mapDispatchToProps = dispatch => {
 };
 
 export const mapStateToProps = state => {
-  const { isLoggedin, authToken } = state.authentication;
+  const { isLoggedIn, authToken, user } = state.authentication;
   return {
-    isLoggedin,
-    authToken
+    isLoggedIn,
+    authToken,
+    user
   };
 };
 

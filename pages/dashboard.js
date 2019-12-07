@@ -23,6 +23,7 @@ import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
 import "../scss/main.scss";
+import { doLogin } from "../src/actions/authentication";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -122,7 +123,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard({ isLoggedin, authToken }) {
+export default function Dashboard(props) {
+  const { isLoggedIn, user } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -163,8 +165,8 @@ export default function Dashboard({ isLoggedin, authToken }) {
           >
             JS Hyderabad
           </Typography>
-          {isLoggedin ? (
-            <>{authToken}</>
+          {isLoggedIn ? (
+            <>{user.profile.displayName}</>
           ) : (
             <a href="/slacklogin">
               <img src="https://api.slack.com/img/sign_in_with_slack.png" />
@@ -218,3 +220,6 @@ export default function Dashboard({ isLoggedin, authToken }) {
     </div>
   );
 }
+Dashboard.getInitialProps = async ctx => {
+  console.log(ctx.store.getState().authentication.user.displayName);
+};

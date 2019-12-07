@@ -19,8 +19,9 @@ export function loginSuccess(details) {
   console.log(details);
   return {
     type: LOGIN,
-    isLoggedin: details.isLoggedin,
-    authToken: details.authToken
+    isLoggedIn: details.isLoggedIn,
+    authToken: details.authToken,
+    user: details.user
   };
 }
 
@@ -29,7 +30,7 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export function loginFailure(error) {
   return {
     type: LOGIN_ERROR,
-    isLoggedin: false,
-    authToken: "error"
+    isLoggedIn: false,
+    error: error
   };
 }

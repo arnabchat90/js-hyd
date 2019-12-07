@@ -13,8 +13,8 @@ import withRedux from "next-redux-wrapper";
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     // we can dispatch from here too
-    console.log("_app initial prop");
-    ctx.store.dispatch(doLogin());
+    // console.log("_app initial prop");
+    // ctx.store.dispatch(doLogin());
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
@@ -30,7 +30,6 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
-    console.log("_app render", store.getState());
     return (
       <React.Fragment>
         <Head>
@@ -48,4 +47,4 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(configureStore, { debug: true })(MyApp);
+export default withRedux(configureStore)(MyApp);
