@@ -13,11 +13,11 @@ import withRedux from "next-redux-wrapper";
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     // we can dispatch from here too
-    // console.log("_app initial prop");
-    // ctx.store.dispatch(doLogin());
+    await ctx.store.dispatch(doLogin());
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
-      : {};
+      : { ...ctx.store.getState() };
+    console.log(pageProps);
     return { pageProps };
   }
   componentDidMount() {

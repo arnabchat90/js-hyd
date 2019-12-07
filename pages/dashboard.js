@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -82,6 +82,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     fontWeight: 1000
   },
+  avatarImg: {
+    padding: "5px",
+    borderRadius: "20px"
+  },
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
@@ -133,6 +137,15 @@ export default function Dashboard(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // useEffect(() => {
+  //   async function fetchLogin() {
+  //     // You can await here
+  //     const response = await doLogin();
+  //     console.log(response);
+  //   }
+  //   fetchLogin();
+  // }, []); // Or [] if effect doesn't need props or state
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -166,7 +179,13 @@ export default function Dashboard(props) {
             JS Hyderabad
           </Typography>
           {isLoggedIn ? (
-            <>{user.profile.displayName}</>
+            <>
+              <img
+                className={classes.avatarImg}
+                src={user.profile.user.image_24}
+              ></img>
+              {user.profile.displayName}
+            </>
           ) : (
             <a href="/slacklogin">
               <img src="https://api.slack.com/img/sign_in_with_slack.png" />
