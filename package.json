@@ -2,8 +2,6 @@
   "name": "nextjs",
   "version": "4.0.0",
   "private": true,
-  "slack-cid": "801175801296.848166055235",
-  "slack-secret": "69283615b862408c8565b132b6d1d93a",
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.5.1",
