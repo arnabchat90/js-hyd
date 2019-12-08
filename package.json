@@ -38,6 +38,7 @@
   },
   "scripts": {
     "dev": "next -p 8080",
+    "startup": "./startup.bat",
     "build": "next build",
     "start": "node ./server/server.js",
     "start-default-port": "next start"

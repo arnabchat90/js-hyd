@@ -13,11 +13,20 @@ import withRedux from "next-redux-wrapper";
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     // we can dispatch from here too
-    await ctx.store.dispatch(doLogin());
+    if (ctx.req.user) {
+      ctx.store.dispatch(
+        loginSuccess({
+          isLoggedIn: true,
+          user: ctx.req.user
+        })
+      );
+    }
+    if (process.browser && !ctx.getState().authenitcation.isLoggedIn) {
+      await ctx.store.dispatch(doLogin());
+    }
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : { ...ctx.store.getState() };
-    console.log(pageProps);
     return { pageProps };
   }
   componentDidMount() {
