@@ -15,8 +15,6 @@ export function doLogin() {
 }
 
 export function loginSuccess(details) {
-  console.log("details");
-  console.log(details);
   return {
     type: LOGIN,
     isLoggedIn: details.isLoggedIn,
