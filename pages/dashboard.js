@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,7 +23,7 @@ import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
 import "../scss/main.scss";
-import { doLogin } from "../src/actions/authentication";
+import { fetchLogin } from "../src/services/fetchLogin";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -82,6 +82,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     fontWeight: 1000
   },
+  avatarImg: {
+    padding: "5px",
+    borderRadius: "20px"
+  },
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
@@ -133,6 +137,7 @@ export default function Dashboard(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -166,7 +171,13 @@ export default function Dashboard(props) {
             JS Hyderabad
           </Typography>
           {isLoggedIn ? (
-            <>{user.profile.displayName}</>
+            <>
+              <img
+                className={classes.avatarImg}
+                src={user.profile.user.image_24}
+              ></img>
+              {user.profile.displayName}
+            </>
           ) : (
             <a href="/slacklogin">
               <img src="https://api.slack.com/img/sign_in_with_slack.png" />
@@ -221,5 +232,8 @@ export default function Dashboard(props) {
   );
 }
 Dashboard.getInitialProps = async ctx => {
-  console.log(ctx.store.getState().authentication.user.displayName);
+  const response = await fetchLogin();
+  const { isLoggedIn, user } = response.data;
+
+  return { isLoggedIn, user };
 };

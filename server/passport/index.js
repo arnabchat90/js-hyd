@@ -19,8 +19,6 @@ const setAuthRouter = function(router) {
   );
   router.get("/api/slack/isLoggedIn", function(req, res) {
     //  const isLoggedIn = Math.random() >= 0.5;
-    console.log(req.user);
-    console.log(req.session);
     if (req.user) {
       const { user } = req;
       res.status(200);
