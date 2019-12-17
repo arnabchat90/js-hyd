@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,7 +23,7 @@ import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
 import "../scss/main.scss";
-import { doLogin } from "../src/actions/authentication";
+import { fetchLogin } from "../src/services/fetchLogin";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -138,14 +138,6 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  // useEffect(() => {
-  //   async function fetchLogin() {
-  //     // You can await here
-  //     const response = await doLogin();
-  //     console.log(response);
-  //   }
-  //   fetchLogin();
-  // }, []); // Or [] if effect doesn't need props or state
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -240,5 +232,8 @@ export default function Dashboard(props) {
   );
 }
 Dashboard.getInitialProps = async ctx => {
-  console.log(ctx.store.getState().authentication.user.displayName);
+  const response = await fetchLogin();
+  const { isLoggedIn, user } = response.data;
+
+  return { isLoggedIn, user };
 };
