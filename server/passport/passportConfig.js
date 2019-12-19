@@ -1,10 +1,9 @@
-const {
-  CLIENT_SLACK_ID,
-  CLIENT_SLACK_SECRET
-} = process.env
+const { CLIENT_SLACK_ID, CLIENT_SLACK_SECRET } = process.env
 const SlackStrategy = require('passport-slack').Strategy
 const passport = require('passport')
 const refresh = require('passport-oauth2-refresh')
+
+const persistence = require('../persistence/index')
 
 // setup the strategy using defaults
 passport.use(
@@ -22,9 +21,22 @@ passport.use(
         id,
         profile
       }
-      // console.log('in pp callback')
-      //  console.log(user)
-      done(null, user)
+      persistence
+        .getUserProfileAsync(user)
+        .then(function (u) {
+          if(!u) {
+            throw 'database returned null'
+          }
+          accessToken = persistence.generateJWTTokenSync(u)
+          console.log(accessToken)
+          u.accessToken = accessToken
+          // console.log('in pp callback')
+          //  console.log(user)
+          done(null, u)
+        })
+        .catch(function (err) {
+          done(err)
+        })
     }
   )
 )
