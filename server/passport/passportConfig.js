@@ -16,6 +16,7 @@ passport.use(
       // optionally persist profile data
       const { id } = profile
       const user = {
+        authsource: "slack",
         accessToken,
         refreshToken,
         id,

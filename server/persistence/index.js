@@ -14,7 +14,6 @@ const generateUserContext = function(user) {
 const configureDB = function(callback) {
     
     const { MONGO_URI } = process.env;
-    console.log(`URI : ${MONGO_URI}`)
     if(!MONGO_URI) {
         throw 'Database config not found'
     }

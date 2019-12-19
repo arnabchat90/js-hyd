@@ -4,6 +4,7 @@
   const userSchema = new Schema({
     userid: String,
     displayname: String,
+    authsource: String,
     teamid: String,
     email: String,
     phone: String,

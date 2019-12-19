@@ -9,7 +9,7 @@ const getProfileDetails = function (resolve, reject) {
   if (!slackUser) {
     throw 'user details not provided'
   }
-  const { accessToken, id: userid, profile = {} } = slackUser
+  const { accessToken, id: userid, profile = {}, authsource } = slackUser
   const {
     user = {},
     team = {},
@@ -23,6 +23,7 @@ const getProfileDetails = function (resolve, reject) {
   const userModelObject = {
     userid,
     displayname,
+    authsource,
     teamid,
     email,
     phone: null,
