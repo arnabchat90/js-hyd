@@ -33,12 +33,12 @@ const configureDB = function(callback) {
         })
         if(userdb) {
             console.log('userdb found')
-            callback()
+            callback();
         } else {
             throw 'user database not found'
         }
        // module.exports.Collection = names;
-       callback()
+      // callback()
     });
     })
 }
