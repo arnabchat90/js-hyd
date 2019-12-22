@@ -16,5 +16,5 @@ npm run dev
 ## Local Environment Setup -
 
 1. yarn install / npm install
-2. Get slackid/secret from the dev team @SahilRS200 @arnabchat90
+2. Get slackid/secret from the dev team @SahilRS200 @arnabchat90 or from the web-app-keys channel
 3. run ./startup.bat from command prompt(windows)
