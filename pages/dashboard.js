@@ -176,7 +176,7 @@ export default function Dashboard(props) {
                 className={classes.avatarImg}
                 src={user.profile.user.image_24}
               ></img>
-              {user.profile.displayName}
+              {user.displayname}
             </>
           ) : (
             <a href="/slacklogin">
