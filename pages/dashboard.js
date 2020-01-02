@@ -128,7 +128,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Dashboard(props) {
-  const { isLoggedIn, user } = props;
+  const { isLoggedIn, user, authToken } = props;
+  console.log("auth token", authToken);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -234,6 +235,6 @@ export default function Dashboard(props) {
 Dashboard.getInitialProps = async ctx => {
   const response = await fetchLogin();
   const { isLoggedIn, user } = response.data;
-
-  return { isLoggedIn, user };
+  const { accessToken } = user;
+  return { isLoggedIn, user, authToken: accessToken };
 };

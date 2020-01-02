@@ -27,12 +27,14 @@ export const mainListItems = (
         <ListItemText primary="Community Calender" />
       </ListItem>
     </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Create an Event" />
-    </ListItem>
+    <Link href="/discussion">
+      <ListItem button>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Discussion Board" />
+      </ListItem>
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <BubbleChartIcon />
