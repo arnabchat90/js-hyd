@@ -9,23 +9,15 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Link from "next/link";
 import MenuIcon from "@material-ui/icons/Menu";
-import LockOpenRoundedIcon from "@material-ui/icons/LockOpenRounded";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems, secondaryListItems } from "../src/dashboard/listitems";
-import Chart from "../src/dashboard/Chart";
-import Deposits from "../src/dashboard/Deposits";
-import Orders from "../src/dashboard/Orders";
-import Homepage from '../src/dashboard/Homepage';
 import "../scss/main.scss";
 import { fetchLogin } from "../src/services/fetchLogin";
-function Copyright() {
+export function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
@@ -37,7 +29,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -208,7 +199,7 @@ export default function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-              <Homepage />
+            <Homepage />
           </Grid>
         </Container>
         <Copyright />
