@@ -16,3 +16,5 @@ yarn-error.log*
 /sessions
 # Next.js
 /.next
+startup.bat
+yarn.lock

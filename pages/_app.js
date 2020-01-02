@@ -13,7 +13,7 @@ import withRedux from "next-redux-wrapper";
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     // we can dispatch from here too
-    if (ctx.req.user) {
+    if (ctx.req && ctx.req.user) {
       ctx.store.dispatch(
         loginSuccess({
           isLoggedIn: true,
