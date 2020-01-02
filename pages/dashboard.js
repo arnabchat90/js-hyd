@@ -22,6 +22,7 @@ import { mainListItems, secondaryListItems } from "../src/dashboard/listitems";
 import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
+import Homepage from '../src/dashboard/Homepage';
 import "../scss/main.scss";
 import { fetchLogin } from "../src/services/fetchLogin";
 function Copyright() {
@@ -168,7 +169,7 @@ export default function Dashboard(props) {
             noWrap
             className={classes.title}
           >
-            JS Hyderabad
+            JS - Hyderabad
           </Typography>
           {isLoggedIn ? (
             <>
@@ -206,24 +207,7 @@ export default function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
+              <Homepage />
           </Grid>
         </Container>
         <Copyright />
