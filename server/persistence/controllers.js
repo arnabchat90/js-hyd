@@ -49,10 +49,11 @@ const getProfileDetails = function (resolve, reject) {
         reject(err)
       } else {
         console.log('resolved doc')
-        console.log(doc)
-        delete doc['_id'];
-        delete doc['__v'];
-        resolve(doc)
+        const retVal = doc.toObject();
+        console.log(retVal)
+        delete retVal['_id'];
+        delete retVal['__v'];
+        resolve(retVal)
       }
     }
   )

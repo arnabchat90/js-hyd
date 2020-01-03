@@ -14,14 +14,16 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     // we can dispatch from here too
     if (ctx.req && ctx.req.user) {
+      console.log(ctx.req.user);
       ctx.store.dispatch(
         loginSuccess({
           isLoggedIn: true,
-          user: ctx.req.user
+          user: ctx.req.user,
+          authToken: ctx.req.user.accessToken
         })
       );
     }
-    if (process.browser && !ctx.getState().authenitcation.isLoggedIn) {
+    if (process.browser && !ctx.store.getState().authenitcation) {
       await ctx.store.dispatch(doLogin());
     }
     const pageProps = Component.getInitialProps

@@ -4,7 +4,7 @@ import Router from "next/router";
 import { defaultCipherList } from "constants";
 import { withRouter } from "next/router";
 import Dashboard from "./dashboard";
-
+//login redirect component
 class slackLogin extends React.Component {
   constructor(props) {
     super(props);

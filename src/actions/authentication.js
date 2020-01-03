@@ -18,7 +18,7 @@ export function loginSuccess(details) {
   return {
     type: LOGIN,
     isLoggedIn: details.isLoggedIn,
-    authToken: details.authToken,
+    authToken: details.user.accessToken,
     user: details.user
   };
 }
