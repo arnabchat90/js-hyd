@@ -180,7 +180,7 @@ export default function Dashboard(props) {
               {user.displayname}
             </>
           ) : (
-            <a href="/slacklogin">
+            <a href="/slackLogin">
               <img src="https://api.slack.com/img/sign_in_with_slack.png" />
             </a>
           )}
