@@ -29,7 +29,9 @@ passport.use(
           if (!u) {
             throw "database returned null";
           }
+          
           accessToken = persistence.generateJWTTokenSync(u);
+          console.log(accessToken, 'accessToken')
           u.accessToken = accessToken;
           console.log(user);
           done(null, u);
