@@ -5,7 +5,7 @@ const secret = process.env.JWT_SECRET
 
 const getProfileDetails = function (resolve, reject) {
   const { slackUser } = this
-  // console.log(this)
+  console.log(this)
   if (!slackUser) {
     throw 'user details not provided'
   }
@@ -34,10 +34,10 @@ const getProfileDetails = function (resolve, reject) {
       user
     }
   }
-  // console.log(mongo_user)
+  console.log(mongo_user)
   const UserData = new mongo_user(userModelObject)
-  // console.log('before write')
-  // console.log(UserData)
+  console.log('before write')
+  console.log(UserData)
   mongo_user.findOneAndUpdate(
     { userid },
     userModelObject,
@@ -48,8 +48,8 @@ const getProfileDetails = function (resolve, reject) {
         console.log(err)
         reject(err)
       } else {
-        // console.log('resolved doc')
-        // const retVal = doc.toObject();
+        console.log('resolved doc')
+        const retVal = doc.toObject();
         console.log(retVal)
         delete retVal['_id'];
         delete retVal['__v'];
