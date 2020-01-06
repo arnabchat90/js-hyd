@@ -1,4 +1,4 @@
-const { CLIENT_SLACK_ID, CLIENT_SLACK_SECRET } = process.env;
+const { CLIENT_SLACK_ID, CLIENT_SLACK_SECRET,CLIENT_SLACK_CALLBACK } = process.env;
 const SlackStrategy = require("passport-slack").Strategy;
 const passport = require("passport");
 const refresh = require("passport-oauth2-refresh");
@@ -10,7 +10,7 @@ passport.use(
   new SlackStrategy(
     {
       clientID: CLIENT_SLACK_ID,
-      clientSecret: CLIENT_SLACK_SECRET
+      clientSecret: CLIENT_SLACK_SECRET,
       callbackURL: CLIENT_SLACK_CALLBACK
     },
     (accessToken, refreshToken, profile, done) => {
