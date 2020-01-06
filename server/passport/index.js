@@ -11,11 +11,15 @@ const setAuthRouter = function(router) {
   // OAuth callback url
   router.get(
     "/api/slack/callback",
-    passport.authenticate("slack", { failureRedirect: "/login" }),
-    (req, res) => {
-      const { user } = req;
-      res.redirect("/");
-    }
+    passport.authenticate("slack", { 
+      failureRedirect: "/login",
+      successRedirect: '/'
+      })
+    // ,
+    // (req, res) => {
+    //   const { user } = req;
+    //   res.redirect("/");
+    // }
   );
   router.get("/api/slack/isLoggedIn", function(req, res) {
     //  const isLoggedIn = Math.random() >= 0.5;

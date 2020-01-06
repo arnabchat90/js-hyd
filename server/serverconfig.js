@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const authApi = require("./passport/index");
 const passport = require("./passport/passportConfig");
 const prod = process.env.NODE_ENV === "production";
+console.log(prod, 'is production');
 const server = express();
 
 // Session config
