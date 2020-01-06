@@ -22,10 +22,10 @@ import { mainListItems, secondaryListItems } from "../src/dashboard/listitems";
 import Chart from "../src/dashboard/Chart";
 import Deposits from "../src/dashboard/Deposits";
 import Orders from "../src/dashboard/Orders";
-import Homepage from '../src/dashboard/Homepage';
+import Homepage from "../src/dashboard/Homepage";
 import "../scss/main.scss";
 import { fetchLogin } from "../src/services/fetchLogin";
-function Copyright() {
+export function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
@@ -37,7 +37,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -129,7 +128,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Dashboard(props) {
-  const { isLoggedIn, user } = props;
+  const { isLoggedIn, user, authToken } = props;
+  console.log("auth token", authToken);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -180,7 +180,7 @@ export default function Dashboard(props) {
               {user.displayname}
             </>
           ) : (
-            <a href="/slacklogin">
+            <a href="/slackLogin">
               <img src="https://api.slack.com/img/sign_in_with_slack.png" />
             </a>
           )}
@@ -207,7 +207,7 @@ export default function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-              <Homepage />
+            <Homepage />
           </Grid>
         </Container>
         <Copyright />
@@ -218,6 +218,6 @@ export default function Dashboard(props) {
 Dashboard.getInitialProps = async ctx => {
   const response = await fetchLogin();
   const { isLoggedIn, user } = response.data;
-
-  return { isLoggedIn, user };
+  const { accessToken } = user;
+  return { isLoggedIn, user, authToken: accessToken };
 };
