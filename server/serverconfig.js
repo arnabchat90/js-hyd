@@ -3,7 +3,7 @@ const api = require("./api");
 const api2 = require("./api2");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const FileStore = require("session-file-store")(session);
+const MemoryStore = require('memorystore')(session)
 const cookieParser = require("cookie-parser");
 
 const authApi = require("./passport/index");
@@ -13,10 +13,12 @@ const server = express();
 
 // Session config
 const hour = 3600000;
-const fileStoreOptions = {};
-const appFileStore = new FileStore(fileStoreOptions); // persist session in local file store
+const fileStoreOptions = {
+  checkPeriod: hour
+};
+const appSessStore = new MemoryStore(fileStoreOptions); // persist session in local file store
 const appSession = session({
-  store: appFileStore,
+  store: appSessStore,
   secret: "abc123", // ENV VARIABLE
   maxAge: hour,
   rolling: true,
