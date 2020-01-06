@@ -21,7 +21,7 @@ const configureDB = function(callback) {
     var db = mongoose.connection;
     db.on('error', function(e) {console.log(e)})
     db.once('open', function(m) { 
-        //console.log(m);
+        console.log(m);
         console.log('conn opened, looking for collections')
         mongoose.connection.db.listCollections().toArray(function (err, names=[]) {
         if(names.length< 1) {
