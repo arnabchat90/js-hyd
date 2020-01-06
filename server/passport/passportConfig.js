@@ -33,7 +33,7 @@ passport.use(
           accessToken = persistence.generateJWTTokenSync(u);
           console.log(accessToken, 'accessToken')
           u.accessToken = accessToken;
-          console.log(user);
+          console.log(u);
           done(null, u);
         })
         .catch(function(err) {
@@ -43,7 +43,15 @@ passport.use(
   )
 );
 
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((user, done) => done(null, user));
+passport.serializeUser((user, done) => {
+  console.log('serialising user')
+  console.log(user);
+  done(null, user)
+});
+passport.deserializeUser((user, done) => {
+  console.log('de-serialising user')
+  console.log(user);
+  done(null, user)
+});
 
 module.exports = passport;
