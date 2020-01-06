@@ -11,6 +11,7 @@ passport.use(
     {
       clientID: CLIENT_SLACK_ID,
       clientSecret: CLIENT_SLACK_SECRET
+      callbackURL: CLIENT_SLACK_CALLBACK
     },
     (accessToken, refreshToken, profile, done) => {
       // optionally persist profile data
