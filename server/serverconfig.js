@@ -23,7 +23,7 @@ const appSession = session({
   rolling: true,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: hour, secure: prod } // secure: true for https reuqests only
+  cookie: { maxAge: hour, secure: false } // secure: true for https reuqests only
 });
 
 // Add session, body and cookie parser
