@@ -23,7 +23,10 @@ const appSession = session({
   rolling: true,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: hour, secure: false } // secure: true for https reuqests only
+  cookie: { 
+    proxy: prod, // Proxy to be set to true, if running behing NGINX server
+    maxAge: hour, 
+    secure: false } // secure: true for https requests only | For NGINX use proxy
 });
 
 // Add session, body and cookie parser
