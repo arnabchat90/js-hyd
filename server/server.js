@@ -5,7 +5,7 @@ const next = require('next')
 const port = process.env.PORT || 8080
 
 const dev = process.env.NODE_ENV !== 'production'
-console.log(dev)
+console.log(dev, 'is development')
 const app = next({
   dev,
   dir: './'

@@ -31,9 +31,9 @@ passport.use(
           }
           
           accessToken = persistence.generateJWTTokenSync(u);
-          console.log(accessToken, 'accessToken')
+        //  console.log(accessToken, 'accessToken')
           u.accessToken = accessToken;
-          console.log(u);
+       //   console.log(u);
           done(null, u);
         })
         .catch(function(err) {
