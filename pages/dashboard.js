@@ -129,7 +129,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard(props) {
   const { isLoggedIn, user, authToken } = props;
-  console.log("auth token", authToken);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
