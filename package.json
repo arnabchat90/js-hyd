@@ -18,6 +18,7 @@
     "globalize": "^1.4.2",
     "iana-tz-data": "^2019.1.0",
     "jsonwebtoken": "^8.5.1",
+    "memorystore": "^1.6.1",
     "moment": "^2.24.0",
     "mongoose": "^5.8.1",
     "next": "latest",
@@ -42,7 +43,8 @@
     "dev": "next -p 8080",
     "startup": "./startup.bat",
     "build": "next build",
-    "start": "npm rebuild && node ./server/server.js",
+    "start-dev": "node ./server/server.js",
+    "start": "node ./server/server.js",
     "start-default-port": "next start"
   }
 }

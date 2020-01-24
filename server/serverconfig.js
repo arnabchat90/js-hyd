@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const authApi = require("./passport/index");
 const passport = require("./passport/passportConfig");
 const prod = process.env.NODE_ENV === "production";
+console.log(prod, 'is production');
 const server = express();
 
 // Session config
@@ -22,7 +23,10 @@ const appSession = session({
   rolling: true,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: hour, secure: prod } // secure: true for https reuqests only
+  cookie: { 
+    proxy: prod, // Proxy to be set to true, if running behing NGINX server
+    maxAge: hour, 
+    secure: false } // secure: true for https requests only | For NGINX use proxy
 });
 
 // Add session, body and cookie parser
